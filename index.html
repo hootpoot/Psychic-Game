@@ -39,12 +39,19 @@
         var psychicChoice = letters[Math.floor(Math.random() * letters.length)];
 
         console.log(psychicChoice);
+        
         //update scween
         function updateScreen() {
             winsText.textContent = "wins: " + wins;
             lossesText.textContent = "losses: " + losses;
             guessesText.textContent = "guesses left: " + guesses;
             yourGuessesText.textContent = "your guesses: " + yourGuesses;
+        };
+
+        function newGame() {
+            yourGuesses = [];
+            guesses = 9;
+            psychicChoice = letters[Math.floor(Math.random() * letters.length)];
         };
 
         //onkey function
@@ -64,18 +71,14 @@
             //determine the winner
             if (userGuess === psychicChoice) {
                 wins++;
-                yourGuesses = [];
-                guesses = 9;
-                psychicChoice = letters[Math.floor(Math.random() * letters.length)];
+                newGame();
             } else if (userGuess !== psychicChoice) {
                 yourGuesses.push(userGuess);
                 guesses -= 1;
             }
             if (guesses === 0) {
                 losses++;
-                yourGuesses = [];
-                guesses = 9;
-                psychicChoice = letters[Math.floor(Math.random() * letters.length)];
+                newGame();
             }
             updateScreen();
 
