@@ -20,42 +20,58 @@
     <script type="text/javascript">
         //create an array of letters???
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-            "t", "u", "v", "w", "x", "y", "z"];
-        
+            "t", "u", "v", "w", "x", "y", "z"
+        ];
+
         //variables to store info
         var winsText = document.getElementById("wins-text");
         var lossesText = document.getElementById("losses-text");
         var guessesText = document.getElementById("guesses-text");
         var yourGuessesText = document.getElementById("your-guesses-text");
-        
+
         //create variables for wins, losses, guesses left, wrong guesses
         var wins = 0;
         var losses = 0;
         var guesses = 9;
         var yourGuesses = [];
-        
-        //onkey function
-        document.onkeyup = function(event) {
-            //determines which key was pressed
-            var userGuess = event.key
-            //randomly choose letter from array
-            var psychicChoice = letters[math.Floor(math.Random() * letters.length)];
-        
-        
-        //determine the winner
-         if (userGuess === computerChoice) {
-             wins++;
-         } else if (userGuess !== computerChoice) {
-             yourGuesses.push(userGuess); 
-         }
 
-        
-        }
+        //randomly choose letter from array
+        var psychicChoice = letters[Math.floor(Math.random() * letters.length)];
 
+        //update scween
         function updateScreen() {
             winsText.textContent = "wins: " + wins;
-            lossesText.textContent = -
+            lossesText.textContent = "losses: " + losses;
+            guessesText.textContent = "guesses left: " + guesses;
+            yourGuessesText.textContent = "your guesses: " + yourGuesses;
+        };
+
+        //onkey function
+        document.onkeyup = function (event) {
+            //determines which key was pressed
+            var userGuess = event.key;
+            //validating input
+            if (letters.indexOf(userGuess) === -1) {
+                return;
+            }
+            //ruling out repeats
+            if (yourGuesses.indexOf(userGuess) !== -1) {
+                return;
+            }
+
+
+            //determine the winner
+            if (userGuess === psychicChoice) {
+                wins++;
+            } else if (userGuess !== psychicChoice) {
+                yourGuesses.push(userGuess);
+            }
+            updateScreen();
+
+
         }
+
+        updateScreen();
     </script>
 </body>
 
