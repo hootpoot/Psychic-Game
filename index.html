@@ -38,6 +38,7 @@
         //randomly choose letter from array
         var psychicChoice = letters[Math.floor(Math.random() * letters.length)];
 
+        console.log(psychicChoice);
         //update scween
         function updateScreen() {
             winsText.textContent = "wins: " + wins;
@@ -63,8 +64,18 @@
             //determine the winner
             if (userGuess === psychicChoice) {
                 wins++;
+                yourGuesses = [];
+                guesses = 9;
+                psychicChoice = letters[Math.floor(Math.random() * letters.length)];
             } else if (userGuess !== psychicChoice) {
                 yourGuesses.push(userGuess);
+                guesses -= 1;
+            }
+            if (guesses === 0) {
+                losses++;
+                yourGuesses = [];
+                guesses = 9;
+                psychicChoice = letters[Math.floor(Math.random() * letters.length)];
             }
             updateScreen();
 
