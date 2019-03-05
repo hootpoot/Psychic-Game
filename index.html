@@ -11,36 +11,51 @@
     <h1>The Psychic Game</h1>
     <div>
         <p id="directions-text">Guess what letter I'm thinking of</p>
-        <p id="wins-text">Wins:</p>
-        <p id="losses-text">Losses:</p>
-        <p id="guesses-text">Guesses Left:</p>
-        <p id="your-guesses-text">Your guesses so far:</p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="guesses-text"></p>
+        <p id="your-guesses-text"></p>
     </div>
 
     <script type="text/javascript">
         //create an array of letters???
         var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
-            "t", "u", "v", "w", "x", "y", "z"
-        ]
-        //create variables for wins, losses, guesses left, wrong guesses
-        var wins = 0;
-        var losses = 0;
-        var guesses = 9;
-        var yourGuesses = [" "];
+            "t", "u", "v", "w", "x", "y", "z"];
+        
         //variables to store info
         var winsText = document.getElementById("wins-text");
         var lossesText = document.getElementById("losses-text");
         var guessesText = document.getElementById("guesses-text");
         var yourGuessesText = document.getElementById("your-guesses-text");
+        
+        //create variables for wins, losses, guesses left, wrong guesses
+        var wins = 0;
+        var losses = 0;
+        var guesses = 9;
+        var yourGuesses = [];
+        
         //onkey function
         document.onkeyup = function(event) {
             //determines which key was pressed
             var userGuess = event.key
             //randomly choose letter from array
-            var psychicChoice = math.Floor(math.Random() * letters.length)};
-         
+            var psychicChoice = letters[math.Floor(math.Random() * letters.length)];
+        
+        
+        //determine the winner
+         if (userGuess === computerChoice) {
+             wins++;
+         } else if (userGuess !== computerChoice) {
+             yourGuesses.push(userGuess); 
+         }
 
-        //
+        
+        }
+
+        function updateScreen() {
+            winsText.textContent = "wins: " + wins;
+            lossesText.textContent = -
+        }
     </script>
 </body>
 
